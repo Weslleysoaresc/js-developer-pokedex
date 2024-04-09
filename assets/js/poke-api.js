@@ -12,6 +12,13 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     pokemon.types = types
     pokemon.type = type
 
+    const skills = pokeDetail.abilities.map((abilitySlot) => abilitySlot.ability.name)
+
+    const [skill] = skills 
+    pokemon.skills = skills
+    pokemon.skill = skill
+
+
     pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
 
     return pokemon
@@ -33,3 +40,4 @@ pokeApi.getPokemons = (offset = 0, limit = 5) => {
         .then((detailRequests) => Promise.all(detailRequests))
         .then((pokemonsDetails) => pokemonsDetails)
 }
+
